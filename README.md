@@ -6,4 +6,6 @@ Code to accompany a Knitted art piece for the James Memorial Art Center's Mini M
 ## Artist through the Viewing Screen
 
 ## Project Notes
-**1/23** - Started project by building repo and setting up https://bit.ly/MiniQR link and QR code.
+**1/23** - Started project by building repo and setting up https://bit.ly/MiniQR link and QR code.  
+![QR CODE](MiniQR.png)  
+
