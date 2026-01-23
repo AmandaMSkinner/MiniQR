@@ -3,4 +3,5 @@ Code to accompany a Knitted art piece for the James Memorial Art Center's Mini M
 ***
 ![Show Prompt](Mini.png)
 ***
-## Viewer through the Screen
+## Artist through the Viewing Screen
+
