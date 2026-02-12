@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>A Window</title>
+<title>A Window to the World</title>
 
 <style>
   body {
@@ -72,32 +72,16 @@
 </div>
 
 <footer>
-  The world does not move unless you ask it to.
+  This window refreshes itself hourly. No two moments are exactly the same.
 </footer>
 
 <script>
-
 const windows = [
-  {
-    image: "images/window1.jpg",
-    text: "Low clouds rest gently against distant mountains. Nothing is urgent here."
-  },
-  {
-    image: "images/window2.jpg",
-    text: "A harbor holds still water. The boats wait without impatience."
-  },
-  {
-    image: "images/window3.jpg",
-    text: "Snow softens the edges of everything. Sound feels farther away."
-  },
-  {
-    image: "images/window4.jpg",
-    text: "Trees stand quietly in late afternoon light. The day is not in a hurry."
-  },
-  {
-    image: "images/window5.jpg",
-    text: "A city skyline fades into evening. Windows glow one by one."
-  }
+  { image: "images/window1.jpg", text: "Low clouds rest gently against distant mountains." },
+  { image: "images/window2.jpg", text: "A harbor holds still water. The boats wait quietly." },
+  { image: "images/window3.jpg", text: "Snow softens the edges of everything." },
+  { image: "images/window4.jpg", text: "A quiet entrance shows early morning light." },
+  { image: "images/window5.jpg", text: "Evening settles over a distant city skyline." }
 ];
 
 function newWindow() {
@@ -117,8 +101,8 @@ function newWindow() {
   }, 600);
 }
 
+// Load one on page load
 newWindow();
-
 </script>
 
 </body>
