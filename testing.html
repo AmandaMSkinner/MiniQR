@@ -7,56 +7,52 @@
 <style>
   body {
     margin: 0;
-    background-color: #f3f0ea;
+    background-color: #ece8e1;
     font-family: Georgia, serif;
-    color: #2e2e2e;
+    color: #2a2a2a;
     text-align: center;
-    padding: 60px 20px;
-  }
-
-  h1 {
-    font-weight: normal;
-    margin-bottom: 40px;
+    padding: 80px 20px;
   }
 
   #container {
-    max-width: 900px;
+    max-width: 850px;
     margin: 0 auto;
   }
 
   img {
     width: 100%;
-    max-height: 500px;
+    max-height: 520px;
     object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 25px;
-    transition: opacity 0.5s ease;
+    border-radius: 4px;
+    margin-bottom: 35px;
+    transition: opacity 0.8s ease;
   }
 
   #description {
-    font-size: 1.2em;
-    line-height: 1.6;
-    margin-bottom: 40px;
-    min-height: 60px;
-    transition: opacity 0.5s ease;
+    font-size: 1.25em;
+    line-height: 1.7;
+    margin-bottom: 50px;
+    min-height: 80px;
+    transition: opacity 0.8s ease;
   }
 
   button {
-    padding: 12px 28px;
-    font-size: 1em;
-    background-color: #4a4a4a;
+    padding: 10px 26px;
+    font-size: 0.95em;
+    background-color: #3e3e3e;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 3px;
     cursor: pointer;
+    letter-spacing: 0.5px;
   }
 
   button:hover {
-    background-color: #2f2f2f;
+    background-color: #222;
   }
 
   footer {
-    margin-top: 60px;
+    margin-top: 70px;
     font-size: 0.8em;
     color: #777;
   }
@@ -65,21 +61,65 @@
 
 <body>
 
-<h1>Look Out the Window</h1>
-
 <div id="container">
-  <img id="webcam" src="" alt="A quiet view">
+
+  <img id="windowImage" src="" alt="A quiet view">
+  
   <div id="description"></div>
-  <button onclick="newWindow()">Look Somewhere Else</button>
+  
+  <button onclick="newWindow()">Look Again</button>
+
 </div>
 
 <footer>
-  The world changes only when you choose to look.
+  The world does not move unless you ask it to.
 </footer>
 
 <script>
 
 const windows = [
   {
-    image: "https://www.nps.gov/webcams-yell/mammoth.jpg",
-    text: "Steam rises slowly from the earth at Mammoth Hot Springs. The ai
+    image: "images/window1.jpg",
+    text: "Low clouds rest gently against distant mountains. Nothing is urgent here."
+  },
+  {
+    image: "images/window2.jpg",
+    text: "A harbor holds still water. The boats wait without impatience."
+  },
+  {
+    image: "images/window3.jpg",
+    text: "Snow softens the edges of everything. Sound feels farther away."
+  },
+  {
+    image: "images/window4.jpg",
+    text: "Trees stand quietly in late afternoon light. The day is not in a hurry."
+  },
+  {
+    image: "images/window5.jpg",
+    text: "A city skyline fades into evening. Windows glow one by one."
+  }
+];
+
+function newWindow() {
+  const img = document.getElementById("windowImage");
+  const desc = document.getElementById("description");
+
+  img.style.opacity = 0;
+  desc.style.opacity = 0;
+
+  setTimeout(() => {
+    const randomIndex = Math.floor(Math.random() * windows.length);
+    img.src = windows[randomIndex].image;
+    desc.textContent = windows[randomIndex].text;
+
+    img.style.opacity = 1;
+    desc.style.opacity = 1;
+  }, 600);
+}
+
+newWindow();
+
+</script>
+
+</body>
+</html>
