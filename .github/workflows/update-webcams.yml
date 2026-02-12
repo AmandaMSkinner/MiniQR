@@ -2,7 +2,7 @@ name: Update Webcam Images Hourly
 
 on:
   schedule:
-    - cron: "0 * * * *"  # Every hour at minute 0
+    - cron: "0 * * * *"  # Every hour at minute 0 
   workflow_dispatch:      # Allows manual trigger
 
 jobs:
