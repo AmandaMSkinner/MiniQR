@@ -1,0 +1,31 @@
+name: Update Webcam Images
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # Every hour at minute 0
+  workflow_dispatch:      # Allows manual trigger
+
+jobs:
+  update-images:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download webcam snapshots
+        run: |
+          mkdir -p images
+          curl -L https://www.nps.gov/webcams-yell/washburn_ne.jpg -o images/window1.jpg
+          curl -L https://www.nps.gov/webcams-yell/washburn_sw.jpg -o images/window2.jpg
+          curl -L https://www.nps.gov/webcams-yell/west_gate.jpg -o images/window3.jpg
+          curl -L https://www.nps.gov/webcams-yell/east_out.jpg -o images/window4.jpg
+          curl -L https://www.nps.gov/webcams-yell/east_in.jpg -o images/window5.jpg
+
+      - name: Commit updated images
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add images/
+          git commit -m "Hourly webcam update" || echo "No changes to commit"
+          git push
