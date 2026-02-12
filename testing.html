@@ -1,112 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Look Out Another Window</title>
+<meta charset="UTF-8">
+<title>A Window</title>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 1rem;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #111;
-      color: #eee;
-      text-align: center;
-    }
+<style>
+  body {
+    margin: 0;
+    background-color: #f3f0ea;
+    font-family: Georgia, serif;
+    color: #2e2e2e;
+    text-align: center;
+    padding: 60px 20px;
+  }
 
-    h1 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
+  h1 {
+    font-weight: normal;
+    margin-bottom: 40px;
+  }
 
-    .description {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      opacity: 0.9;
-    }
+  #container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 
-    .video-container {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%; /* 16:9 */
-      margin-bottom: 1rem;
-    }
+  img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    transition: opacity 0.5s ease;
+  }
 
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 8px;
-    }
+  #description {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    min-height: 60px;
+    transition: opacity 0.5s ease;
+  }
 
-    .hint {
-      font-size: 0.9rem;
-      opacity: 0.7;
-      margin-bottom: 1rem;
-    }
+  button {
+    padding: 12px 28px;
+    font-size: 1em;
+    background-color: #4a4a4a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
-    a {
-      color: #7aa2ff;
-      text-decoration: none;
-      font-weight: 500;
-    }
+  button:hover {
+    background-color: #2f2f2f;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  footer {
+    margin-top: 60px;
+    font-size: 0.8em;
+    color: #777;
+  }
+</style>
 </head>
+
 <body>
 
-  <h1>Look Out Another Window</h1>
+<h1>Look Out the Window</h1>
 
-  <div class="description" id="description"></div>
+<div id="container">
+  <img id="webcam" src="" alt="A quiet view">
+  <div id="description"></div>
+  <button onclick="newWindow()">Look Somewhere Else</button>
+</div>
 
-  <div class="video-container">
-    <iframe
-      id="webcam"
-      allow="autoplay; fullscreen"
-      loading="lazy">
-    </iframe>
-  </div>
+<footer>
+  The world changes only when you choose to look.
+</footer>
 
-  <div class="hint">
-    Refresh the page to look out a different window 🌍
-  </div>
+<script>
 
-  <a href="https://example.com/project-info" target="_blank">
-    Learn more about this project →
-  </a>
-
-  <script>
-    const webcams = [
-      {
-        url: "https://www.youtube.com/embed/AdUw5RdyZxI?autoplay=1&mute=1",
-        description: "Shibuya Crossing, Tokyo — one of the busiest intersections on Earth."
-      },
-      {
-        url: "https://www.youtube.com/embed/21X5lGlDOfg?autoplay=1&mute=1",
-        description: "Live view of Earth from the International Space Station."
-      },
-      {
-        url: "https://www.youtube.com/embed/mRe-514tGMg?autoplay=1&mute=1",
-        description: "Times Square, New York City — neon, crowds, and motion."
-      },
-      {
-        url: "https://www.youtube.com/embed/DjdUEyjx8GM?autoplay=1&mute=1",
-        description: "A peaceful harbor view somewhere by the sea."
-      }
-    ];
-
-    const choice = webcams[Math.floor(Math.random() * webcams.length)];
-
-    document.getElementById("webcam").src = choice.url;
-    document.getElementById("description").textContent = choice.description;
-  </script>
-
-</body>
-</html>
+const windows = [
+  {
+    image: "https://www.nps.gov/webcams-yell/mammoth.jpg",
+    text: "Steam rises slowly from the earth at Mammoth Hot Springs. The ai
