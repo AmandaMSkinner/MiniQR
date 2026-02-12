@@ -1,4 +1,4 @@
-name: Update Webcam Images
+name: Update Webcam Images Hourly
 
 on:
   schedule:
@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout your repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2️⃣ Download latest webcam snapshots
       - name: Download webcam snapshots
         run: |
           mkdir -p images
@@ -22,10 +24,13 @@ jobs:
           curl -L https://www.nps.gov/webcams-yell/east_out.jpg -o images/window4.jpg
           curl -L https://www.nps.gov/webcams-yell/east_in.jpg -o images/window5.jpg
 
+      # 3️⃣ Commit & push changes using GITHUB_TOKEN
       - name: Commit updated images
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add images/
           git commit -m "Hourly webcam update" || echo "No changes to commit"
-          git push
+          git push https://x-access-token:${REPO_TOKEN}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
