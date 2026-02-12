@@ -2,131 +2,150 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contemplative Windows</title>
 <style>
   html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    width: 100%;
-    overflow: hidden; /* Prevent scrolling */
     font-family: 'Georgia', serif;
-    background: #f4f4f4;
+    background: #f0f0f0;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    color: #333;
     text-align: center;
   }
 
-  #window-container {
+  #container {
     position: relative;
-    max-width: 90vw;
-    max-height: 70vh;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #bg-blur {
+    position: absolute;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    filter: blur(15px) brightness(0.8);
+    z-index: 0;
+    transition: opacity 0.4s ease;
   }
 
   #window-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Scale image without cropping */
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    height: auto;
+    max-height: 80%;
+    z-index: 1;
+    transition: opacity 0.4s ease;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    opacity: 1;
-    transition: opacity 0.8s ease-in-out;
-    position: absolute;
-    top: 0;
-    left: 0;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
   }
 
   #description {
-    margin: 1rem;
-    font-size: 1rem;
-    line-height: 1.4;
-    color: #333;
-    max-width: 90vw;
-    transition: opacity 0.8s ease-in-out;
-    opacity: 1;
+    position: relative;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    z-index: 2;
+    transition: opacity 0.4s ease;
+  }
+
+  #description a {
+    color: #6aa84f;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  #description a:hover {
+    text-decoration: underline;
   }
 
   #new-window-button {
-    margin-top: 1rem;
-    padding: 0.6rem 1.2rem;
+    margin-top: 20px;
+    padding: 12px 30px;
     font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    background: #6aa84f;
-    color: white;
+    background-color: #d9ead3;
+    border: 2px solid #6aa84f;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background-color 0.3s ease;
   }
 
   #new-window-button:hover {
-    background: #4a7d32;
+    background-color: #c4e1b1;
+  }
+
+  #counter, #about {
+    margin-top: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  #about {
+    margin-top: 5px;
+  }
+
+  @media (max-width: 600px) {
+    #window-image {
+      width: 95%;
+      max-height: 70%;
+    }
+    #description {
+      font-size: 1rem;
+      padding: 0 5px;
+    }
   }
 </style>
 </head>
 <body>
 
-<div id="window-container">
-  <img id="window-image" src="" alt="Contemplative Window">
+<div id="container">
+  <img id="bg-blur" src="" alt="Blurred background">
+  <img id="window-image" src="" alt="Contemplative window view">
 </div>
+
 <div id="description"></div>
-<button id="new-window-button">Look Out Another Window</button>
+<button id="new-window-button">Look out another window</button>
+<div id="counter">Windows viewed: 0 / ∞</div>
+<div id="about"><a href="#">About this project</a></div>
 
 <script>
-  const windows = [
-    { src: "https://www.nps.gov/webcams-yell/washburn_ne.jpg", desc: "Mount Washburn - Northeastern View. Daylight casts soft shadows over the valleys below." },
-    { src: "https://www.nps.gov/webcams-yell/washburn_sw.jpg", desc: "Mount Washburn - Southern View. Smoke drifts lazily from distant fires." },
-    { src: "https://www.nps.gov/webcams-yell/west_gate.jpg", desc: "West Entrance - Out of the Park. Gates are calm and empty." },
-    { src: "https://www.nps.gov/webcams-yell/east_out.jpg", desc: "East Entrance - Out of Park. Trees sway in the morning breeze." },
-    { src: "https://www.nps.gov/webcams-yell/east_in.jpg", desc: "East Entrance - Into Park. Trails stretch into quiet woods." }
-  ];
-
-  const img = document.getElementById("window-image");
-  const desc = document.getElementById("description");
-  const button = document.getElementById("new-window-button");
-
-  function showRandomWindow() {
-    // Choose a random window
-    const choice = windows[Math.floor(Math.random() * windows.length)];
-    
-    // Fade out
-    img.style.opacity = 0;
-    desc.style.opacity = 0;
-
-    // After fade out, change src and description
-    setTimeout(() => {
-      img.src = choice.src + "?" + Date.now(); // cache-busting
-      desc.textContent = choice.desc;
-
-      // Fade in
-      img.style.opacity = 1;
-      desc.style.opacity = 1;
-    }, 400); // half of transition time for smoother effect
+const windows = [
+  { 
+    src: "https://www.nps.gov/webcams-yell/washburn_ne.jpg", 
+    desc: "Mount Washburn - Northeastern View. Daylight casts soft shadows over the valleys below.", 
+    location: "Yellowstone National Park, Wyoming, USA"
+  },
+  { 
+    src: "https://www.nps.gov/webcams-yell/washburn_sw.jpg", 
+    desc: "Mount Washburn - Southern View. Smoke drifts lazily from distant fires.", 
+    location: "Yellowstone National Park, Wyoming, USA"
+  },
+  { 
+    src: "https://www.nps.gov/webcams-yell/west_gate.jpg", 
+    desc: "West Entrance - Out of the Park. Gates are calm and empty.", 
+    location: "West Yellowstone, Montana, USA"
+  },
+  { 
+    src: "https://www.nps.gov/webcams-yell/east_out.jpg", 
+    desc: "East Entrance - Out of Park. Trees sway in the morning breeze.", 
+    location: "East Yellowstone, Wyoming, USA"
+  },
+  { 
+    src: "https://www.nps.gov/webcams-yell/east_in.jpg", 
+    desc: "East Entrance - Into Park. Trails stretch into quiet woods.", 
+    location: "East Yellowstone, Wyoming, USA"
   }
+];
 
-  button.addEventListener("click", showRandomWindow);
-
-  // Show a window initially
-  showRandomWindow();
-
-  // Optional: resize text slightly on very small screens
-  function adjustTextSize() {
-    if(window.innerHeight < 500) {
-      desc.style.fontSize = "0.85rem";
-      button.style.fontSize = "0.9rem";
-    } else {
-      desc.style.fontSize = "1rem";
-      button.style.fontSize = "1rem";
-    }
-  }
-
-  window.addEventListener("resize", adjustTextSize);
-  adjustTextSize();
-</script>
-
-</body>
-</html>
+const img = document.getElementById("window-image");
+const bg = document.getEle
