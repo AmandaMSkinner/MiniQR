@@ -2,107 +2,130 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>A Window to the World</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Contemplative Windows</title>
 <style>
-  body {
+  html, body {
     margin: 0;
-    background-color: #ece8e1;
-    font-family: Georgia, serif;
-    color: #2a2a2a;
-    text-align: center;
-    padding: 80px 20px;
-  }
-
-  #container {
-    max-width: 850px;
-    margin: 0 auto;
-  }
-
-  img {
+    padding: 0;
+    height: 100%;
     width: 100%;
-    max-height: 520px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 35px;
-    transition: opacity 0.8s ease;
+    overflow: hidden; /* Prevent scrolling */
+    font-family: 'Georgia', serif;
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #window-container {
+    position: relative;
+    max-width: 90vw;
+    max-height: 70vh;
+    width: 100%;
+    height: 100%;
+  }
+
+  #window-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Scale image without cropping */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    opacity: 1;
+    transition: opacity 0.8s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   #description {
-    font-size: 1.25em;
-    line-height: 1.7;
-    margin-bottom: 50px;
-    min-height: 80px;
-    transition: opacity 0.8s ease;
+    margin: 1rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #333;
+    max-width: 90vw;
+    transition: opacity 0.8s ease-in-out;
+    opacity: 1;
   }
 
-  button {
-    padding: 10px 26px;
-    font-size: 0.95em;
-    background-color: #3e3e3e;
-    color: white;
+  #new-window-button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
     border: none;
-    border-radius: 3px;
+    border-radius: 6px;
+    background: #6aa84f;
+    color: white;
     cursor: pointer;
-    letter-spacing: 0.5px;
+    transition: background 0.3s;
   }
 
-  button:hover {
-    background-color: #222;
-  }
-
-  footer {
-    margin-top: 70px;
-    font-size: 0.8em;
-    color: #777;
+  #new-window-button:hover {
+    background: #4a7d32;
   }
 </style>
 </head>
-
 <body>
 
-<div id="container">
-
-  <img id="windowImage" src="" alt="A quiet view">
-  
-  <div id="description"></div>
-  
-  <button onclick="newWindow()">Look Again</button>
-
+<div id="window-container">
+  <img id="window-image" src="" alt="Contemplative Window">
 </div>
-
-<footer>
-  This window refreshes itself hourly. No two moments are exactly the same.
-</footer>
+<div id="description"></div>
+<button id="new-window-button">Look Out Another Window</button>
 
 <script>
-const windows = [
-  { image: "images/window1.jpg", text: "Low clouds rest gently against distant mountains." },
-  { image: "images/window2.jpg", text: "A harbor holds still water. The boats wait quietly." },
-  { image: "images/window3.jpg", text: "Snow softens the edges of everything." },
-  { image: "images/window4.jpg", text: "A quiet entrance shows early morning light." },
-  { image: "images/window5.jpg", text: "Evening settles over a distant city skyline." }
-];
+  const windows = [
+    { src: "https://www.nps.gov/webcams-yell/washburn_ne.jpg", desc: "Mount Washburn - Northeastern View. Daylight casts soft shadows over the valleys below." },
+    { src: "https://www.nps.gov/webcams-yell/washburn_sw.jpg", desc: "Mount Washburn - Southern View. Smoke drifts lazily from distant fires." },
+    { src: "https://www.nps.gov/webcams-yell/west_gate.jpg", desc: "West Entrance - Out of the Park. Gates are calm and empty." },
+    { src: "https://www.nps.gov/webcams-yell/east_out.jpg", desc: "East Entrance - Out of Park. Trees sway in the morning breeze." },
+    { src: "https://www.nps.gov/webcams-yell/east_in.jpg", desc: "East Entrance - Into Park. Trails stretch into quiet woods." }
+  ];
 
-function newWindow() {
-  const img = document.getElementById("windowImage");
+  const img = document.getElementById("window-image");
   const desc = document.getElementById("description");
+  const button = document.getElementById("new-window-button");
 
-  img.style.opacity = 0;
-  desc.style.opacity = 0;
+  function showRandomWindow() {
+    // Choose a random window
+    const choice = windows[Math.floor(Math.random() * windows.length)];
+    
+    // Fade out
+    img.style.opacity = 0;
+    desc.style.opacity = 0;
 
-  setTimeout(() => {
-    const randomIndex = Math.floor(Math.random() * windows.length);
-    img.src = windows[randomIndex].image;
-    desc.textContent = windows[randomIndex].text;
+    // After fade out, change src and description
+    setTimeout(() => {
+      img.src = choice.src + "?" + Date.now(); // cache-busting
+      desc.textContent = choice.desc;
 
-    img.style.opacity = 1;
-    desc.style.opacity = 1;
-  }, 600);
-}
+      // Fade in
+      img.style.opacity = 1;
+      desc.style.opacity = 1;
+    }, 400); // half of transition time for smoother effect
+  }
 
-// Load one on page load
-newWindow();
+  button.addEventListener("click", showRandomWindow);
+
+  // Show a window initially
+  showRandomWindow();
+
+  // Optional: resize text slightly on very small screens
+  function adjustTextSize() {
+    if(window.innerHeight < 500) {
+      desc.style.fontSize = "0.85rem";
+      button.style.fontSize = "0.9rem";
+    } else {
+      desc.style.fontSize = "1rem";
+      button.style.fontSize = "1rem";
+    }
+  }
+
+  window.addEventListener("resize", adjustTextSize);
+  adjustTextSize();
 </script>
 
 </body>
