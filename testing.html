@@ -2,150 +2,108 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contemplative Windows</title>
+<title>A Window to the World</title>
+
 <style>
-  html, body {
+  body {
     margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Georgia', serif;
-    background: #f0f0f0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #333;
+    background-color: #ece8e1;
+    font-family: Georgia, serif;
+    color: #2a2a2a;
     text-align: center;
+    padding: 80px 20px;
   }
 
   #container {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    overflow: hidden;
+    max-width: 850px;
+    margin: 0 auto;
   }
 
-  #bg-blur {
-    position: absolute;
+  img {
     width: 100%;
-    height: 100%;
+    max-height: 520px;
     object-fit: cover;
-    filter: blur(15px) brightness(0.8);
-    z-index: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  #window-image {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    height: auto;
-    max-height: 80%;
-    z-index: 1;
-    transition: opacity 0.4s ease;
-    border-radius: 12px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    border-radius: 4px;
+    margin-bottom: 35px;
+    transition: opacity 0.8s ease;
   }
 
   #description {
-    position: relative;
-    margin-top: 15px;
-    font-size: 1.1rem;
-    z-index: 2;
-    transition: opacity 0.4s ease;
+    font-size: 1.25em;
+    line-height: 1.7;
+    margin-bottom: 50px;
+    min-height: 80px;
+    transition: opacity 0.8s ease;
   }
 
-  #description a {
-    color: #6aa84f;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  #description a:hover {
-    text-decoration: underline;
-  }
-
-  #new-window-button {
-    margin-top: 20px;
-    padding: 12px 30px;
-    font-size: 1rem;
-    background-color: #d9ead3;
-    border: 2px solid #6aa84f;
-    border-radius: 8px;
+  button {
+    padding: 10px 26px;
+    font-size: 0.95em;
+    background-color: #3e3e3e;
+    color: white;
+    border: none;
+    border-radius: 3px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    letter-spacing: 0.5px;
   }
 
-  #new-window-button:hover {
-    background-color: #c4e1b1;
+  button:hover {
+    background-color: #222;
   }
 
-  #counter, #about {
-    margin-top: 10px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    color: #555;
-  }
-
-  #about {
-    margin-top: 5px;
-  }
-
-  @media (max-width: 600px) {
-    #window-image {
-      width: 95%;
-      max-height: 70%;
-    }
-    #description {
-      font-size: 1rem;
-      padding: 0 5px;
-    }
+  footer {
+    margin-top: 70px;
+    font-size: 0.8em;
+    color: #777;
   }
 </style>
 </head>
+
 <body>
 
 <div id="container">
-  <img id="bg-blur" src="" alt="Blurred background">
-  <img id="window-image" src="" alt="Contemplative window view">
+
+  <img id="windowImage" src="" alt="A quiet view">
+  
+  <div id="description"></div>
+  
+  <button onclick="newWindow()">Look Again</button>
+
 </div>
 
-<div id="description"></div>
-<button id="new-window-button">Look out another window</button>
-<div id="counter">Windows viewed: 0 / ∞</div>
-<div id="about"><a href="#">About this project</a></div>
+<footer>
+  This window refreshes itself hourly. No two moments are exactly the same.
+</footer>
 
 <script>
 const windows = [
-  { 
-    src: "https://www.nps.gov/webcams-yell/washburn_ne.jpg", 
-    desc: "Mount Washburn - Northeastern View. Daylight casts soft shadows over the valleys below.", 
-    location: "Yellowstone National Park, Wyoming, USA"
-  },
-  { 
-    src: "https://www.nps.gov/webcams-yell/washburn_sw.jpg", 
-    desc: "Mount Washburn - Southern View. Smoke drifts lazily from distant fires.", 
-    location: "Yellowstone National Park, Wyoming, USA"
-  },
-  { 
-    src: "https://www.nps.gov/webcams-yell/west_gate.jpg", 
-    desc: "West Entrance - Out of the Park. Gates are calm and empty.", 
-    location: "West Yellowstone, Montana, USA"
-  },
-  { 
-    src: "https://www.nps.gov/webcams-yell/east_out.jpg", 
-    desc: "East Entrance - Out of Park. Trees sway in the morning breeze.", 
-    location: "East Yellowstone, Wyoming, USA"
-  },
-  { 
-    src: "https://www.nps.gov/webcams-yell/east_in.jpg", 
-    desc: "East Entrance - Into Park. Trails stretch into quiet woods.", 
-    location: "East Yellowstone, Wyoming, USA"
-  }
+  { image: "images/window1.jpg", text: "Low clouds rest gently against distant mountains." },
+  { image: "images/window2.jpg", text: "A harbor holds still water. The boats wait quietly." },
+  { image: "images/window3.jpg", text: "Snow softens the edges of everything." },
+  { image: "images/window4.jpg", text: "A quiet entrance shows early morning light." },
+  { image: "images/window5.jpg", text: "Evening settles over a distant city skyline." }
 ];
 
-const img = document.getElementById("window-image");
-const bg = document.getEle
+function newWindow() {
+  const img = document.getElementById("windowImage");
+  const desc = document.getElementById("description");
+
+  img.style.opacity = 0;
+  desc.style.opacity = 0;
+
+  setTimeout(() => {
+    const randomIndex = Math.floor(Math.random() * windows.length);
+    img.src = windows[randomIndex].image;
+    desc.textContent = windows[randomIndex].text;
+
+    img.style.opacity = 1;
+    desc.style.opacity = 1;
+  }, 600);
+}
+
+// Load one on page load
+newWindow();
+</script>
+
+</body>
+</html>
