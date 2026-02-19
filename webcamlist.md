@@ -1,1 +1,1 @@
-ISS views - https://www.youtube.com/watch?v=aB1yRz0HhdY
+ESO Webcams - https://www.eso.org/public/outreach/webcams/
