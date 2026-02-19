@@ -20,9 +20,7 @@ jobs:
           mkdir -p images
           curl -L https://www.nps.gov/webcams-yell/washburn_ne.jpg -o images/window1.jpg
           curl -L https://www.nps.gov/webcams-yell/washburn_sw.jpg -o images/window2.jpg
-          curl -L https://www.nps.gov/webcams-yell/west_gate.jpg -o images/window3.jpg
-          curl -L https://www.nps.gov/webcams-yell/east_out.jpg -o images/window4.jpg
-          curl -L https://www.nps.gov/webcams-yell/east_in.jpg -o images/window5.jpg
+          curl -L https://www.nps.gov/webcams-yell/mammoth_parade.jpg -o images/window3.jpg
 
       # 3️⃣ Commit & push changes using GITHUB_TOKEN
       - name: Commit updated images
