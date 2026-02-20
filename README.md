@@ -17,5 +17,7 @@ Decided to generate a smaller QR code as well using https://barcode.tec-it.com/e
 First attempt in flat fairisle with contrast border failed, pins I used to knit were 1 1/4", and short to manuver.
 Second attempt in two color fair isle without contrast border triggered text pop-up on phone, but would not scan.  
 Found longer 1 1/2" quilt pins (size 28 or .66 mm thick) and tried double knitting.  Double knitting gauge was too large and thread showed through on both sides.  
-Cut the ends off of quilt pins and filed to make crude double-pointed needles.  Knit across and cut yarn to avoid gauge issues with purling.  Successfully scanned.  
+Cut the ends off of quilt pins and filed to make crude double-pointed needles.  Knit across and cut yarn to avoid gauge issues with purling.  
+
+**2/20** - Left piece mounted in shadowbox for two weeks to make sure it would still scan.  Meanwhile built an action to fetch static images from webcams to serve as my windwos to the outside world  
 
