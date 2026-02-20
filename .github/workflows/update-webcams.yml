@@ -21,6 +21,7 @@ jobs:
           curl -L https://www.nps.gov/webcams-yell/washburn_ne.jpg -o images/window1.jpg
           curl -L https://www.nps.gov/webcams-yell/washburn_sw.jpg -o images/window2.jpg
           curl -L https://www.nps.gov/webcams-yell/mammoth_parade.jpg -o images/window3.jpg
+          curl -L https://volcanoes.usgs.gov/observatories/hvo/cams/V1cam/images/M.jpg -o images/window4.jpg
 
       # 3️⃣ Commit & push changes using GITHUB_TOKEN
       - name: Commit updated images
