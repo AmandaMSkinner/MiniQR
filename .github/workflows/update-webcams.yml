@@ -24,6 +24,10 @@ jobs:
           curl -L https://volcanoes.usgs.gov/observatories/hvo/cams/V1cam/images/M.jpg -o images/window004.jpg
           curl -L https://www.nps.gov/webcams-vall/valle_grande_cabin_webcam.jpg -o images/window005.jpg
           curl -L https://www.nps.gov/webcams-redw/Bald_Hills.jpg -o images/window006.jpg
+          curl -L https://cdn.pixelcaster.com/public.pixelcaster.com/snapshots/grandcanyon-1/latest.jpg -o images/window007.jpg
+          curl -L https://www.nps.gov/webcams-bost/north-001.jpeg -o images/window008.jpg  
+          curl -L https://volcanoes.usgs.gov/observatories/hvo/cams/R3cam/images/M.jpg -o images/window009.jpg
+          
 
       # 3️⃣ Commit & push changes using GITHUB_TOKEN
       - name: Commit updated images
