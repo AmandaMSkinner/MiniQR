@@ -47,6 +47,7 @@ jobs:
           curl -L https://www.nps.gov/webcams-glca/po1.jpg -o images/window027.jpg
           curl -L https://www.nps.gov/webcams-colm/image.jpg -o images/window028.jpg
           curl -L https://volcview.wr.usgs.gov/ashcam-api/images/webcams/ys-bbsn/current.jpg -o images/window029.jpg
+          curl -L https://www.cruisingearth.com/webcam/port/658/united-states/niagara-falls-new-york3.jpg -o images/window030.jpg
           
 
       # 3️⃣ Commit & push changes using GITHUB_TOKEN
