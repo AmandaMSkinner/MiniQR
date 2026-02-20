@@ -2,8 +2,8 @@
 Code to accompany a Knitted art piece for the James Memorial Art Center's Mini Madness Show, Spring 2026  
 <img src="Mini.png" width="200" height="200">  
 ***
-## Artist through the Viewing Screen
-Information will be added here later.
+## A Window, Shared
+Scanning the QR code leads to a "Window" somewhere else in the world at the current time.  
 ## Project Updates
 **1/23** - Started project by building repo and setting up https://bit.ly/MiniQR link and QR code.  
 <img src="MiniQR.png" width="100" height="100">  
