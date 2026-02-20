@@ -46,6 +46,7 @@ jobs:
           curl -L https://pixelcaster.com/yosemite/webcams/ahwahnee2.jpg -o images/window026.jpg
           curl -L https://www.nps.gov/webcams-glca/po1.jpg -o images/window027.jpg
           curl -L https://www.nps.gov/webcams-colm/image.jpg -o images/window028.jpg
+          curl -L https://volcview.wr.usgs.gov/ashcam-api/images/webcams/ys-bbsn/current.jpg -o images/window029.jpg
           
 
       # 3️⃣ Commit & push changes using GITHUB_TOKEN
